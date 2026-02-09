@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     public string inputID;
+    public Camera mainCamera;
+    public Camera hoodCamera;
+    public KeyCode switchKey;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,5 +28,10 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed * verticalInput);
         //Makes it turn
         transform.Rotate(Vector3.up * turnSpeed * horizontalInput * Time.deltaTime);
+        if (Input.GetKeyDown(switchKey))
+        {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
